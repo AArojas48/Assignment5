@@ -88,9 +88,40 @@ like I said the n comes from the number of nodes and the 2^n from the size of th
 
 
 
-4.
+4. For finding the maximum path sum of a binary tree, I used a Depth-First
+search to get the output needed. To begin, you have the structure for the TreeNode which will have the values each node
+in the tree holds. That is a value and a left/right child. There is also a global variable maxSum that will help keep
+track of the maximum path sum while the DFS is being done. The first function is the DFS function. There is a base case 
+that checks if the root of the tree is empty, if so then the function returns 0. This function will help look through
+the binary tree and help calculate the path sums that are found with recursion. There are two variables Max_left/right
+that both recursively check the max path sum of their subtree. the max(0, DFS->left/right) is used because it helps
+look over path sums that are either negative so the total sum isn't decreased in any way. So only positive path sums are
+taken as well as 0. The global variable maxSum is then set to the maximum of the current value along with the sum of the
+paths found in the current node added with the left/right children. The function then returns the maximum path sum + the
+max of the left/right child. The second function is the MaxPath function that passes in the node's root. In this function
+maxSum is set to INT_MIN so that the edge cases of the nodes are handled. The DFS function is then called with the root
+being passed through. Once the traversal is done, the maxSum is returned which at this point will hold the maximum path
+sum of the path in the tree. This approach has a time complexity of O(n) where n is the total amount of nodes in the tree.
+The space complexity of the approach is also O(n) because of the recursion done in the functions, where the n is the size 
+of the binary tree.
 
 
 
 
-5.
+5. For handling returning the numbers in range of 1 and n in lexicographical order, I decided to do a Depth-First Search.
+The first function is the DFS function, a curr and n variable are passed into the function. Where curr is the current
+number the function is on and the number given. There is first a base case that checks if the current number is greater
+than the n number, if the statement is true the function returns. Next the current number is printed into the output
+every time there the function is called considering that the number is between the range of 1 and n. Then there is a for
+loop that will help with getting the number that comes next. The "next" number is calculated by taking the current
+number and multiplying 10 + the ith iteration to make sure the lexicographical order logic is correct. The "next" number
+is then run through the same comparison done for the base case because if the next is bigger than the n the numbers
+beyond that point are invalid since they would be greater than n. Then the DFS function is recursively called to repeat
+the process. The last function is the lexical function that serves as the beginner for the depth-first search. It starts
+with a for loop that runs through numbers in the range of 1-9 and calls the DFS function so that new numbers are made
+beginning with the smallest possible lexicographical value. This process continues as long as the number being made is
+less than or equal to n. In the main, the n is chosen and the lexical function is called to begin the DFS process for
+the n. This approach has a time complexity of O(n) considering that the numbers being made are made once and they are
+also looked at once through the DFS process. This makes sure that there are no repetition of visits or any repeat numbers.
+The space complexity for this approach is O(1) considering that no arrays, vectors, or any sort of data structure is used
+to store the values, the approach uses a fixed amount of space no matter what the n is.
