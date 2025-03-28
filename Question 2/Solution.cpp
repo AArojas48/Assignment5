@@ -14,6 +14,7 @@ using namespace std;
  * Edge cases: Handle cases where the tree has only two nodes or contains duplicate
  * values
  */
+
 //Binary Tree structure
 struct TreeNode {
     int val;

@@ -26,7 +26,7 @@ bool isValid(const string &s) {
 void InvalidParenthesis(char s[]) {
     unordered_set<string> marked;
     queue<string> q;
-    set<string> results;  // Stores valid strings
+    set<string> results;
 
     bool found = false;
     q.push(string(s));
@@ -41,12 +41,12 @@ void InvalidParenthesis(char s[]) {
             q.pop();
 
             if (isValid(curr)) {
-                results.insert(curr);  // Add to set to avoid duplicates
+                results.insert(curr);
                 found = true;
             }
 
             if (found) {
-                continue;  // Stop generating new strings once a valid level is found
+                continue;
             }
 
             for (int j = 0; j < curr.size(); j++) {
@@ -64,13 +64,13 @@ void InvalidParenthesis(char s[]) {
         }
 
         if (found) {
-            break;  // Stop BFS once we process all valid strings at this level
+            break;
         }
 
         marked.insert(visited.begin(), visited.end());
     }
 
-    // Print unique valid results
+    // Print valid results
     cout << "[";
     for (const string &res : results) {
         cout << res;
