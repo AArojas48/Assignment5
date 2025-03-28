@@ -20,7 +20,7 @@ which corresponds to the bitmask 111...1 (all bits set).
 Edge cases: Handle cases where the graph is already a single node or contains cycles.
 */
 struct State {
-    int node, mask, cost;
+    int node, mask, counter;
 };
 
 const int nodes = 12;
@@ -42,7 +42,7 @@ int shortestPath(int n) {
         q.pop();
 
         if (s.mask == fin) {
-            return s.cost;
+            return s.counter;
         }
         for (int j = 0; j < degree[s.node]; j++) {
             int neighbor = graph[s.node][j];
@@ -50,7 +50,7 @@ int shortestPath(int n) {
 
             if (!visited[neighbor].count(newerMask)) {
                 visited[neighbor].insert(newerMask);
-                q.push({neighbor, newerMask, s.cost + 1});
+                q.push({neighbor, newerMask, s.counter + 1});
             }
         }
     }

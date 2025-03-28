@@ -61,7 +61,29 @@ determined by the size of the tree for the space complexity and the amount of no
 
 
 
-3.
+3. For finding the shortest path that visits all nodes with the connected graph given, I decided to use a Breadth-First
+Search. First is the State structure that will represent the current state that the search is in. The State has a node
+is the current node the function is at, a mask that is a bitmask that will help track what nodes were already visited,
+and a counter that will keep track of the steps taken. Then there are 3 global variables, nodes is a constant integer
+that is set to 12 meaning that there is 12 nodes in total. There is a graph that is a matrix the size of the amount of
+nodes. There is the degree integer that is an array the size of nodes that will store the amount of neighbors of each
+node. Now for the shortest path function, to begin there is an integer fin that will calculate the final mask where all
+bits are set to 1, this will help with checking if every node has been looked at. There is a queue that will store the
+states of the node. An unordered set "visited" that will hold each node's state where all the nodes have their own
+unique mask for the visited node so that it isn't visited again. Next, there is a for loop that will push the initial
+state of each node into the queue for the BFS to process. The mask for the nodes is set to only the ith node being
+visited and the counter is set to 0 considering that there have been no steps taken at this point in the process. The
+state is also marked in the visited variable so that the node in that set is marked accordingly. Next is a while loop 
+runs as long as the queue isn't empty, the state s is dequeued, in this is the current node, the bitmask, and the
+counter. There is an if statement that checks if the state's mask is equal to the final mask which would mean that all
+nodes were visited. If that is the case, then the value for the counter is returned and that will be the shortest path
+needed. If not, then there is a for loop that will help take a look at the neighbors of the current node. The new bitmask
+is calculated by initializing the mask to the neighbor node's. There is then an if statement that checks if the current
+neighbor node's state was visited. If so, the state is marked and then the new state is pushed into the queue for BFS.
+At the bottom, -1 is returned if there were no solutions found after the BFS is done. The time/space complexity for this
+approach is O(n * 2^n). For the time complexity, the n comes from the amount of nodes and the 2^n comes from the size of
+the bitmask. For the space complexity, the queue and the set that stores the mask for each node are O(n * 2^n) where
+like I said the n comes from the number of nodes and the 2^n from the size of the bitmask.
 
 
 
